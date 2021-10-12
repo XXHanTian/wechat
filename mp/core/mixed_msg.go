@@ -1,7 +1,7 @@
 package core
 
 type (
-	MsgType   string
+	MsgType string
 	EventType string
 )
 
@@ -39,6 +39,11 @@ type MixedMsg struct {
 	Longitude    float64 `xml:"Longitude"    json:"Longitude"`    // request
 	Precision    float64 `xml:"Precision"    json:"Precision"`    // request
 
+	AppID       string `json:"AppId" xml:"AppId"`             // miniprogrampage: 小程序appid
+	PagePath    string `json:"PagePath" xml:"PagePath"`       // miniprogrampage: 小程序页面路径
+	ThumbURL    string `json:"ThumbUrl" xml:"ThumbUrl"`       // miniprogrampage: 封面图片的临时cdn链接
+	SessionFrom string `json:"SessionFrom" xml:"SessionFrom"` // event: 开发者在客服会话按钮设置的session-from属性
+
 	// menu
 	MenuId       int64 `xml:"MenuId" json:"MenuId"`
 	ScanCodeInfo *struct {
@@ -59,15 +64,15 @@ type MixedMsg struct {
 		PoiName   string  `xml:"Poiname"    json:"Poiname"`
 	} `xml:"SendLocationInfo,omitempty" json:"SendLocationInfo,omitempty"`
 
-	MsgID    int64  `xml:"MsgID"  json:"MsgID"`  // template, mass
-	Status   string `xml:"Status" json:"Status"` // template, mass
-	*mass           // mass
-	*account        // account
-	*dkf            // dkf
-	*poi            // poi
-	*card           // card
-	*bizwifi        // bizwifi
-	*file           // MsgType is file
+	MsgID  int64  `xml:"MsgID"  json:"MsgID"`  // template, mass
+	Status string `xml:"Status" json:"Status"` // template, mass
+	*mass                                      // mass
+	*account                                   // account
+	*dkf                                       // dkf
+	*poi                                       // poi
+	*card                                      // card
+	*bizwifi                                   // bizwifi
+	*file                                      // MsgType is file
 
 	// shakearound
 	ChosenBeacon *struct {
