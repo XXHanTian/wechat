@@ -116,17 +116,9 @@ func (clt *Client) updateToken(tk *Token, url string) (err error) {
 	tk.AccessToken = result.AccessToken
 	tk.CreatedAt = time.Now().Unix()
 	tk.ExpiresIn = result.ExpiresIn
-	if result.RefreshToken != "" {
-		tk.RefreshToken = result.RefreshToken
-	}
-	if result.OpenId != "" {
-		tk.OpenId = result.OpenId
-	}
-	if result.UnionId != "" {
-		tk.UnionId = result.UnionId
-	}
-	if result.Scope != "" {
-		tk.Scope = result.Scope
-	}
+	tk.RefreshToken = result.RefreshToken
+	tk.OpenId = result.OpenId
+	tk.UnionId = result.UnionId
+	tk.Scope = result.Scope
 	return
 }
