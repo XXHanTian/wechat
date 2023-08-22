@@ -5,16 +5,15 @@ import (
 )
 
 const (
-	MsgTypeText       core.MsgType = "text"    // 文本消息
-	MsgTypeImage      core.MsgType = "image"   // 图片消息
-	MsgTypeVoice      core.MsgType = "voice"   // 语音消息
-	MsgTypeVideo      core.MsgType = "video"   // 视频消息
-	MsgTypeMusic      core.MsgType = "music"   // 音乐消息
-	MsgTypeNews       core.MsgType = "news"    // 图文消息
-	MsgTypeMPNews     core.MsgType = "mpnews"  // 图文消息, 发送已经创建好的图文
-	MsgTypeWxCard     core.MsgType = "wxcard"  // 卡卷消息
-	MsgTypeMenu       core.MsgType = "msgmenu" // 小程序客服消息:菜单
-	MsgTypeWxMiniLink core.MsgType = "link"    // 小程序客服消息:图文链接
+	MsgTypeText       core.MsgType = "text"   // 文本消息
+	MsgTypeImage      core.MsgType = "image"  // 图片消息
+	MsgTypeVoice      core.MsgType = "voice"  // 语音消息
+	MsgTypeVideo      core.MsgType = "video"  // 视频消息
+	MsgTypeMusic      core.MsgType = "music"  // 音乐消息
+	MsgTypeNews       core.MsgType = "news"   // 图文消息
+	MsgTypeMPNews     core.MsgType = "mpnews" // 图文消息, 发送已经创建好的图文
+	MsgTypeWxCard     core.MsgType = "wxcard" // 卡卷消息
+	MsgTypeWxMiniLink core.MsgType = "link"   // 小程序客服消息:图文链接
 )
 
 type MsgHeader struct {
@@ -36,8 +35,7 @@ type Text struct {
 }
 
 // 新建文本消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewText(toUser, content, kfAccount string) (text *Text) {
 	text = &Text{
 		MsgHeader: MsgHeader{
@@ -65,8 +63,7 @@ type Image struct {
 }
 
 // 新建图片消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewImage(toUser, mediaId, kfAccount string) (image *Image) {
 	image = &Image{
 		MsgHeader: MsgHeader{
@@ -94,8 +91,7 @@ type Voice struct {
 }
 
 // 新建语音消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewVoice(toUser, mediaId, kfAccount string) (voice *Voice) {
 	voice = &Voice{
 		MsgHeader: MsgHeader{
@@ -126,8 +122,7 @@ type Video struct {
 }
 
 // 新建视频消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewVideo(toUser, mediaId, thumbMediaId, title, description, kfAccount string) (video *Video) {
 	video = &Video{
 		MsgHeader: MsgHeader{
@@ -162,8 +157,7 @@ type Music struct {
 }
 
 // 新建音乐消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewMusic(toUser, thumbMediaId, musicURL, HQMusicURL, title, description, kfAccount string) (music *Music) {
 	music = &Music{
 		MsgHeader: MsgHeader{
@@ -203,8 +197,7 @@ type News struct {
 }
 
 // 新建图文消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewNews(toUser string, articles []Article, kfAccount string) (news *News) {
 	news = &News{
 		MsgHeader: MsgHeader{
@@ -231,8 +224,7 @@ type MPNews struct {
 }
 
 // 新建图文消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewMPNews(toUser, mediaId, kfAccount string) (mpnews *MPNews) {
 	mpnews = &MPNews{
 		MsgHeader: MsgHeader{
@@ -261,8 +253,7 @@ type WxCard struct {
 }
 
 // 新建卡券消息.
-//
-//	如果不指定客服则 kfAccount 留空.
+//  如果不指定客服则 kfAccount 留空.
 func NewWxCard(toUser, cardId, cardExt, kfAccount string) (card *WxCard) {
 	card = &WxCard{
 		MsgHeader: MsgHeader{
@@ -336,40 +327,6 @@ func NewMiniPage(toUser, title, pagePath, thumbMediaId, kfAccount string) (page 
 	page.MiniProgramPage.ThumbMediaId = thumbMediaId
 	if kfAccount != "" {
 		page.CustomService = &CustomService{
-			KfAccount: kfAccount,
-		}
-	}
-	return
-}
-
-type Menu struct {
-	MsgHeader
-	MsgMenu struct {
-		HeadContent  string     `json:"head_content"`
-		MenuItemList []MenuItem `json:"list"`
-		TailContent  string     `json:"tail_content"`
-	} `json:"msgmenu"`
-	CustomService *CustomService `json:"customservice,omitempty"`
-}
-
-type MenuItem struct {
-	Id      int64  `json:"id"`
-	Content string `json:"content"`
-}
-
-func NewMenu(toUser, headContent, tailContent, kfAccount string, list []MenuItem) (menu *Menu) {
-	menu = &Menu{
-		MsgHeader: MsgHeader{
-			ToUser:  toUser,
-			MsgType: MsgTypeMenu,
-		},
-	}
-
-	menu.MsgMenu.HeadContent = headContent
-	menu.MsgMenu.TailContent = tailContent
-	menu.MsgMenu.MenuItemList = list
-	if kfAccount != "" {
-		menu.CustomService = &CustomService{
 			KfAccount: kfAccount,
 		}
 	}

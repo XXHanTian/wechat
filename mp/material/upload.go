@@ -32,8 +32,7 @@ func UploadImage(clt *core.Client, _filepath string) (mediaId, url string, err e
 }
 
 // UploadImageFromReader 上传多媒体图片
-//
-//	NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
+//  NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
 func UploadImageFromReader(clt *core.Client, filename string, reader io.Reader) (mediaId, url string, err error) {
 	const incompleteURL = "https://api.weixin.qq.com/cgi-bin/material/add_material?type=image&access_token="
 
@@ -76,8 +75,7 @@ func UploadThumb(clt *core.Client, _filepath string) (mediaId, url string, err e
 }
 
 // UploadThumbFromReader 上传多媒体缩略图
-//
-//	NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
+//  NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
 func UploadThumbFromReader(clt *core.Client, filename string, reader io.Reader) (mediaId, url string, err error) {
 	const incompleteURL = "https://api.weixin.qq.com/cgi-bin/material/add_material?type=thumb&access_token="
 
@@ -120,8 +118,7 @@ func UploadVoice(clt *core.Client, _filepath string) (mediaId string, err error)
 }
 
 // UploadVoiceFromReader 上传多媒体语音
-//
-//	NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
+//  NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
 func UploadVoiceFromReader(clt *core.Client, filename string, reader io.Reader) (mediaId string, err error) {
 	const incompleteURL = "https://api.weixin.qq.com/cgi-bin/material/add_material?type=voice&access_token="
 
@@ -162,8 +159,7 @@ func UploadVideo(clt *core.Client, _filepath string, title, introduction string)
 }
 
 // UploadVideoFromReader 上传多媒体缩视频.
-//
-//	NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
+//  NOTE: 参数 filename 不是文件路径, 是 multipart/form-data 里面 filename 的值.
 func UploadVideoFromReader(clt *core.Client, filename string, reader io.Reader, title, introduction string) (mediaId string, err error) {
 	const incompleteURL = "https://api.weixin.qq.com/cgi-bin/material/add_material?type=video&access_token="
 

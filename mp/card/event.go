@@ -71,7 +71,6 @@ type UserGetCardEvent struct {
 	OuterStr            string         `xml:"OuterStr"            json:"OuterStr"`
 	IsRestoreMemberCard int            `xml:"IsRestoreMemberCard" json:"IsRestoreMemberCard"`
 	IsRecommendByFriend int            `xml:"IsRecommendByFriend" json:"IsRecommendByFriend"`
-	UnionId             string         `xml:"UnionId"              json:"UnionId"` // unionId
 }
 
 func GetUserGetCardEvent(msg *core.MixedMsg) *UserGetCardEvent {
@@ -87,7 +86,6 @@ func GetUserGetCardEvent(msg *core.MixedMsg) *UserGetCardEvent {
 		OuterStr:            msg.OuterStr,
 		IsRestoreMemberCard: msg.IsRestoreMemberCard,
 		IsRecommendByFriend: msg.IsRecommendByFriend,
-		UnionId:             msg.UnionId,
 	}
 }
 

@@ -9,8 +9,7 @@ import (
 )
 
 // Refund 申请退款.
-//
-//	NOTE: 请求需要双向证书.
+//  NOTE: 请求需要双向证书.
 func Refund(clt *core.Client, req map[string]string) (resp map[string]string, err error) {
 	return clt.PostXML(core.APIBaseURL()+"/secapi/pay/refund", req)
 }
@@ -31,7 +30,6 @@ type RefundRequest struct {
 	RefundFeeType string `xml:"refund_fee_type"` // 货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
 	RefundDesc    string `xml:"refund_desc"`     // 若商户传入，会在下发给用户的退款消息中体现退款原因
 	RefundAccount string `xml:"refund_account"`  // 退款资金来源
-	NotifyUrl     string `xml:"notify_url"`      // 通知地址url
 }
 
 type RefundResponse struct {
@@ -55,10 +53,9 @@ type RefundResponse struct {
 }
 
 // Refund2 申请退款.
-//
-//	NOTE:
-//	1. 请求需要双向证书.
-//	2. 该函数不支持 代金券 功能, 如果有 代金券 功能请使用 Refund 函数.
+//  NOTE:
+//  1. 请求需要双向证书.
+//  2. 该函数不支持 代金券 功能, 如果有 代金券 功能请使用 Refund 函数.
 func Refund2(clt *core.Client, req *RefundRequest) (resp *RefundResponse, err error) {
 	m1 := make(map[string]string, 16)
 	if req.TransactionId != "" {
@@ -86,10 +83,6 @@ func Refund2(clt *core.Client, req *RefundRequest) (resp *RefundResponse, err er
 	}
 	if req.RefundAccount != "" {
 		m1["refund_account"] = req.RefundAccount
-	}
-
-	if req.NotifyUrl != "" {
-		m1["notify_url"] = req.NotifyUrl
 	}
 
 	m2, err := Refund(clt, m1)

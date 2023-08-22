@@ -11,8 +11,7 @@ import (
 )
 
 // ExchangeToken 通过 code 换取网页授权 access_token.
-//
-//	NOTE: 返回的 token == clt.Token
+//  NOTE: 返回的 token == clt.Token
 func (clt *Client) ExchangeToken(code string) (token *Token, err error) {
 	if clt.Endpoint == nil {
 		err = errors.New("nil Client.Endpoint")
@@ -44,10 +43,9 @@ func (clt *Client) ExchangeToken(code string) (token *Token, err error) {
 }
 
 // RefreshToken 刷新 access_token.
-//
-//	NOTE:
-//	1. refreshToken 可以为空.
-//	2. 返回的 token == clt.Token
+//  NOTE:
+//  1. refreshToken 可以为空.
+//  2. 返回的 token == clt.Token
 func (clt *Client) RefreshToken(refreshToken string) (token *Token, err error) {
 	if clt.Endpoint == nil {
 		err = errors.New("nil Client.Endpoint")
@@ -118,17 +116,9 @@ func (clt *Client) updateToken(tk *Token, url string) (err error) {
 	tk.AccessToken = result.AccessToken
 	tk.CreatedAt = time.Now().Unix()
 	tk.ExpiresIn = result.ExpiresIn
-	if result.RefreshToken != "" {
-		tk.RefreshToken = result.RefreshToken
-	}
-	if result.OpenId != "" {
-		tk.OpenId = result.OpenId
-	}
-	if result.UnionId != "" {
-		tk.UnionId = result.UnionId
-	}
-	if result.Scope != "" {
-		tk.Scope = result.Scope
-	}
+	tk.RefreshToken = result.RefreshToken
+	tk.OpenId = result.OpenId
+	tk.UnionId = result.UnionId
+	tk.Scope = result.Scope
 	return
 }

@@ -6,8 +6,7 @@ import (
 )
 
 // Reverse 撤销订单.
-//
-//	NOTE: 请求需要双向证书.
+//  NOTE: 请求需要双向证书.
 func Reverse(clt *core.Client, req map[string]string) (resp map[string]string, err error) {
 	return clt.PostXML(core.APIBaseURL()+"/secapi/pay/reverse", req)
 }
@@ -32,8 +31,7 @@ type ReverseResponse struct {
 }
 
 // Reverse2 撤销订单.
-//
-//	NOTE: 请求需要双向证书.
+//  NOTE: 请求需要双向证书.
 func Reverse2(clt *core.Client, req *ReverseRequest) (resp *ReverseResponse, err error) {
 	m1 := make(map[string]string, 8)
 	if req.TransactionId != "" {

@@ -15,8 +15,7 @@ import (
 )
 
 // Download 下载多媒体到文件.
-//
-//	请注意, 视频文件不支持下载
+//  请注意, 视频文件不支持下载
 func Download(clt *core.Client, mediaId, filepath string) (written int64, err error) {
 	file, err := os.Create(filepath)
 	if err != nil {
@@ -33,8 +32,7 @@ func Download(clt *core.Client, mediaId, filepath string) (written int64, err er
 }
 
 // DownloadToWriter 下载多媒体到 io.Writer.
-//
-//	请注意, 视频文件不支持下载
+//  请注意, 视频文件不支持下载
 func DownloadToWriter(clt *core.Client, mediaId string, writer io.Writer) (written int64, err error) {
 	httpClient := clt.HttpClient
 	if httpClient == nil {

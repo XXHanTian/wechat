@@ -38,7 +38,12 @@ type MixedMsg struct {
 	Latitude     float64 `xml:"Latitude"     json:"Latitude"`     // request
 	Longitude    float64 `xml:"Longitude"    json:"Longitude"`    // request
 	Precision    float64 `xml:"Precision"    json:"Precision"`    // request
-	BizMsgMenuId int64   `xml:"bizmsgmenuid" json:"bizmsgmenuid"` // request
+
+	AppID       string `json:"AppId" xml:"AppId"`             // miniprogrampage: 小程序appid
+	PagePath    string `json:"PagePath" xml:"PagePath"`       // miniprogrampage: 小程序页面路径
+	ThumbURL    string `json:"ThumbUrl" xml:"ThumbUrl"`       // miniprogrampage: 封面图片的临时cdn链接
+	SessionFrom string `json:"SessionFrom" xml:"SessionFrom"` // event: 开发者在客服会话按钮设置的session-from属性
+
 	// menu
 	MenuId       int64 `xml:"MenuId" json:"MenuId"`
 	ScanCodeInfo *struct {
@@ -82,8 +87,6 @@ type MixedMsg struct {
 		Minor    int     `xml:"Minor"    json:"Minor"`
 		Distance float64 `xml:"Distance" json:"Distance"`
 	} `xml:"AroundBeacons>AroundBeacon,omitempty" json:"AroundBeacons,omitempty"`
-
-	UnionId string `xml:"UnionId"              json:"UnionId"` // unionId
 }
 
 type mass struct {
