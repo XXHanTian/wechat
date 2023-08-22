@@ -20,9 +20,10 @@ type Token struct {
 	ExpiresIn    int64  `json:"expires_in"`              // access_token 接口调用凭证超时时间, 单位: 秒
 	RefreshToken string `json:"refresh_token,omitempty"` // 刷新 access_token 的凭证
 
-	OpenId  string `json:"openid,omitempty"`
-	UnionId string `json:"unionid,omitempty"`
-	Scope   string `json:"scope,omitempty"` // 用户授权的作用域, 使用逗号(,)分隔
+	OpenId         string `json:"openid,omitempty"`
+	UnionId        string `json:"unionid,omitempty"`
+	Scope          string `json:"scope,omitempty"` // 用户授权的作用域, 使用逗号(,)分隔
+	IsSnapshotuser int64  `json:"is_snapshotuser,omitempty"`
 }
 
 // Expired 判断 token.AccessToken 是否过期, 过期返回 true, 否则返回 false.
